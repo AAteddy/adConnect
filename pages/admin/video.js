@@ -3,6 +3,21 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 
+import { getSession } from 'next-auth/react';
+
+export async function getServerSideProps(context) {
+    const session = await getSession(context);
+    if (!session) {
+      return {
+        redirect: {
+          destination: '/admin/login',
+          permanent: false,
+        },
+      };
+    }
+    return { props: { session } };
+  }
+
 export default function VideoManagement() {
     const [videoUrl, setVideoUrl] = useState('');
 
