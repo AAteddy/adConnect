@@ -2,7 +2,7 @@
 
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import dbConnect from '../../../utils/mongodb';
+import dbConnect from '../../../utils/database/mongodb';
 import Admin from '../../../models/Admin'; // Assuming you have an Admin model with hashed passwords
 import bcrypt from 'bcryptjs';
 

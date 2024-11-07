@@ -19,17 +19,15 @@ const LeadSchema = new mongoose.Schema(
     },
     status: { 
         type: String, 
-        enum: ['new', 'contacted', 'qualified', 'converted', 'closed'], 
-        default: 'new' 
+        enum: ['New', 'Contacted', 'Converted'], 
+        default: 'New', 
     },
-    optInVideo: {
-        url: { type: String, default: null },
-        watched: { type: Boolean, default: false }
-    },
-    bookingLink: { type: String, default: null },
     createdAt: { type: Date, default: Date.now }
   },
   { timestamps: true, strict: false }
 );
+
+// Remove the existing model from cache if it exists
+delete mongoose.connection.models['Lead'];
 
 export default mongoose.models.Lead || mongoose.model('Lead', LeadSchema);
